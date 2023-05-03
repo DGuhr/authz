@@ -4,6 +4,7 @@ package grpc
 import (
 	"authz/api"
 	core "authz/api/gen/v1alpha"
+	"authz/api/grpc/middleware"
 	"authz/application"
 	"authz/domain"
 	"context"
@@ -154,7 +155,9 @@ func (s *Server) Serve(wait *sync.WaitGroup) error {
 			s.ServerConfig.GrpcPort)
 	}
 
-	srv := grpc.NewServer(grpc.Creds(creds))
+	logMw := middleware.NewRequestLogInterceptor()
+	srv := grpc.NewServer(grpc.Creds(creds), logMw.Unary())
+
 	core.RegisterCheckPermissionServer(srv, s)
 	core.RegisterLicenseServiceServer(srv, s)
 	err = srv.Serve(ls)

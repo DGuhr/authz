@@ -91,7 +91,8 @@ func createMultiplexer(h1 core.CheckPermissionServer, h2 core.LicenseServiceServ
 		return nil, err
 	}
 
-	chain := createChain(logMiddleware, corsMiddleware).then(mux)
+	// TODO: Do we need to do sth here? -_-
+	chain := createChain(corsMiddleware).then(mux)
 
 	return chain, nil
 }
@@ -106,6 +107,7 @@ func corsMiddleware(h http.Handler) http.Handler {
 	}).Handler(h)
 }
 
+/*
 func logMiddleware(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
@@ -114,4 +116,4 @@ func logMiddleware(h http.Handler) http.Handler {
 
 		h.ServeHTTP(w, r)
 	})
-}
+}*/
