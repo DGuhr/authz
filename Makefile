@@ -90,7 +90,7 @@ apigen-validate:
 
 # Run Swagger UI and host the api docs
 .PHONY: apidocs-start
-apidocs-ui:
+apidocs-start:
 	$(DOCKER) run --rm --name swagger_ui_docs -d -p 8082:8080 -e URLS="[ \
 		{ url: \"/openapi/v1alpha/openapi-authz-v1alpha.yaml\", name: \"Authz API\"}]"\
 		  -v $(PWD)/api/:/usr/share/nginx/html/openapi:Z swaggerapi/swagger-ui
@@ -181,9 +181,9 @@ test-short:
 test:
 	$(GO) test $(PWD)/...
 
-# mimics the CI that runs on PR
+# mimics the CI that runs on PR + tries to re-generate the API from proto to check if it works
 .PHONY: pr-check
-pr-check: gmtidy arch-check test lint binary
+pr-check: gmtidy apigen arch-check test lint binary
 
 # runs go mod tidy
 .PHONY: gmtidy

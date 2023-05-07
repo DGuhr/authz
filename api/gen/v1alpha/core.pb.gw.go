@@ -226,7 +226,7 @@ func local_request_LicenseService_ModifySeats_0(ctx context.Context, marshaler r
 }
 
 var (
-	filter_LicenseService_GetSeats_0 = &utilities.DoubleArray{Encoding: map[string]int{"orgId": 0, "serviceId": 1}, Base: []int{1, 2, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 2, 2, 3, 3}}
+	filter_LicenseService_GetSeats_0 = &utilities.DoubleArray{Encoding: map[string]int{"orgId": 0, "serviceId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
 func request_LicenseService_GetSeats_0(ctx context.Context, marshaler runtime.Marshaler, client LicenseServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -436,7 +436,7 @@ func RegisterLicenseServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 // RegisterCheckPermissionHandlerFromEndpoint is same as RegisterCheckPermissionHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterCheckPermissionHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
 	}
@@ -507,7 +507,7 @@ var (
 // RegisterLicenseServiceHandlerFromEndpoint is same as RegisterLicenseServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterLicenseServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
 	}

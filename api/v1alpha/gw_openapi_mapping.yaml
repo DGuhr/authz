@@ -10,14 +10,7 @@ openapiOptions:
           license:
             name: Apache 2.0
             url: http://www.apache.org/licenses/LICENSE-2.0.html
-        tags:
-            - name: AuthZ
-              description: Everything about your AuthZ
-              externalDocs:
-                description: CIAM AuthZ 
-                url: http://<TODO>
-            - name: user
-              description: Operations about user  
+          version: "1.0.11"
         schemes:
           - HTTP
           - HTTPS

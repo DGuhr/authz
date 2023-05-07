@@ -59,7 +59,6 @@
         "parameters" : [ {
           "name" : "orgId",
           "in" : "path",
-          "description" : "The id of an license-able organization.",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -69,7 +68,6 @@
         }, {
           "name" : "serviceId",
           "in" : "path",
-          "description" : "A \"serviceId\" is an arbitrary identifier for a service with limited access that may be granted to an organization.",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -106,7 +104,6 @@
         "parameters" : [ {
           "name" : "orgId",
           "in" : "path",
-          "description" : "The id of an license-able organization.",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -116,7 +113,6 @@
         }, {
           "name" : "serviceId",
           "in" : "path",
-          "description" : "A \"serviceId\" is an arbitrary identifier for a service with limited access that may be granted to an organization.",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -166,7 +162,6 @@
         "parameters" : [ {
           "name" : "orgId",
           "in" : "path",
-          "description" : "The id of an license-able organization.",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -176,7 +171,6 @@
         }, {
           "name" : "serviceId",
           "in" : "path",
-          "description" : "A \"serviceId\" is an arbitrary identifier for a service with limited access that may be granted to an organization.",
           "required" : true,
           "style" : "simple",
           "explode" : false,
@@ -186,7 +180,6 @@
         }, {
           "name" : "includeUsers",
           "in" : "query",
-          "description" : "true: include enriched user representation. false: do not include (only IDs). Default: true.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -196,7 +189,6 @@
         }, {
           "name" : "filter",
           "in" : "query",
-          "description" : "filter, either assigned or assignable users returned. Default: assigned.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -295,12 +287,10 @@
         "properties" : {
           "seatsTotal" : {
             "type" : "integer",
-            "description" : "Total number of seats assignable.",
             "format" : "int32"
           },
           "seatsAvailable" : {
             "type" : "integer",
-            "description" : "Current number of available seats which can be assigned.",
             "format" : "int32"
           }
         }
@@ -310,7 +300,6 @@
         "properties" : {
           "users" : {
             "type" : "array",
-            "description" : "Just user IDs, unless \"includeUsers\" = true.",
             "items" : {
               "$ref" : "#/components/schemas/v1alphaGetSeatsUserRepresentation"
             }
@@ -345,14 +334,12 @@
         "properties" : {
           "assign" : {
             "type" : "array",
-            "description" : "User IDs to assign to the license.",
             "items" : {
               "type" : "string"
             }
           },
           "unassign" : {
             "type" : "array",
-            "description" : "User IDs to remove from the license.",
             "items" : {
               "type" : "string"
             }

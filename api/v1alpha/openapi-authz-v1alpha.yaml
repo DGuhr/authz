@@ -7,19 +7,12 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: version not set
+  version: 1.0.11
 servers:
 - url: /
 tags:
 - name: CheckPermission
 - name: LicenseService
-- name: AuthZ
-  description: Everything about your AuthZ
-  externalDocs:
-    description: CIAM AuthZ
-    url: http://<TODO>
-- name: user
-  description: Operations about user
 paths:
   /v1alpha/check:
     post:
@@ -43,8 +36,41 @@ paths:
               schema:
                 $ref: '#/components/schemas/v1alphaCheckPermissionResponse'
               example:
-                description: ""
-                result: true
+              - 123
+              - 34
+              - 114
+              - 101
+              - 115
+              - 117
+              - 108
+              - 116
+              - 34
+              - 58
+              - 32
+              - 116
+              - 114
+              - 117
+              - 101
+              - 44
+              - 32
+              - 34
+              - 100
+              - 101
+              - 115
+              - 99
+              - 114
+              - 105
+              - 112
+              - 116
+              - 105
+              - 111
+              - 110
+              - 34
+              - 58
+              - 32
+              - 34
+              - 34
+              - 125
         "401":
           description: Returned when no valid identity information provided to a protected
             endpoint.
@@ -83,7 +109,6 @@ paths:
       parameters:
       - name: orgId
         in: path
-        description: The id of an license-able organization.
         required: true
         style: simple
         explode: false
@@ -91,8 +116,6 @@ paths:
           type: string
       - name: serviceId
         in: path
-        description: A "serviceId" is an arbitrary identifier for a service with limited
-          access that may be granted to an organization.
         required: true
         style: simple
         explode: false
@@ -141,7 +164,6 @@ paths:
       parameters:
       - name: orgId
         in: path
-        description: The id of an license-able organization.
         required: true
         style: simple
         explode: false
@@ -149,8 +171,6 @@ paths:
           type: string
       - name: serviceId
         in: path
-        description: A "serviceId" is an arbitrary identifier for a service with limited
-          access that may be granted to an organization.
         required: true
         style: simple
         explode: false
@@ -207,7 +227,6 @@ paths:
       parameters:
       - name: orgId
         in: path
-        description: The id of an license-able organization.
         required: true
         style: simple
         explode: false
@@ -215,8 +234,6 @@ paths:
           type: string
       - name: serviceId
         in: path
-        description: A "serviceId" is an arbitrary identifier for a service with limited
-          access that may be granted to an organization.
         required: true
         style: simple
         explode: false
@@ -224,8 +241,6 @@ paths:
           type: string
       - name: includeUsers
         in: query
-        description: "true: include enriched user representation. false: do not include\
-          \ (only IDs). Default: true."
         required: false
         style: form
         explode: true
@@ -233,8 +248,6 @@ paths:
           type: boolean
       - name: filter
         in: query
-        description: "filter, either assigned or assignable users returned. Default:\
-          \ assigned."
         required: false
         style: form
         explode: true
@@ -292,58 +305,55 @@ components:
         code:
           type: integer
           format: int32
-        message:
-          type: string
         details:
           type: array
           items:
             $ref: '#/components/schemas/protobufAny'
+        message:
+          type: string
     v1alphaCheckPermissionRequest:
       type: object
       properties:
-        subject:
-          type: string
         operation:
+          type: string
+        resourceid:
           type: string
         resourcetype:
           type: string
-        resourceid:
+        subject:
           type: string
     v1alphaCheckPermissionResponse:
       type: object
       properties:
-        result:
-          type: boolean
         description:
           type: string
+        result:
+          type: boolean
     v1alphaGetLicenseResponse:
       type: object
       properties:
-        seatsTotal:
-          type: integer
-          description: Total number of seats assignable.
-          format: int32
         seatsAvailable:
           type: integer
-          description: Current number of available seats which can be assigned.
+          format: int32
+        seatsTotal:
+          type: integer
           format: int32
     v1alphaGetSeatsResponse:
       type: object
       properties:
         users:
           type: array
-          description: "Just user IDs, unless \"includeUsers\" = true."
           items:
             $ref: '#/components/schemas/v1alphaGetSeatsUserRepresentation'
     v1alphaGetSeatsUserRepresentation:
       type: object
       properties:
+        assigned:
+          type: boolean
         displayName:
           type: string
         id:
           type: string
-        assigned:
-          type: boolean
       description: "we may return more userinfo, this is a starting point."
     v1alphaModifySeatsResponse:
       type: object
@@ -358,12 +368,10 @@ components:
       properties:
         assign:
           type: array
-          description: User IDs to assign to the license.
           items:
             type: string
         unassign:
           type: array
-          description: User IDs to remove from the license.
           items:
             type: string
       description: ModifySeatsRequest assuming we get the userId etc from the requester

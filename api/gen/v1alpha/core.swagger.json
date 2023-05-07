@@ -71,14 +71,12 @@
         "parameters": [
           {
             "name": "orgId",
-            "description": "The id of an license-able organization.",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "serviceId",
-            "description": "A \"serviceId\" is an arbitrary identifier for a service with limited access that may be granted to an organization.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -107,14 +105,12 @@
         "parameters": [
           {
             "name": "orgId",
-            "description": "The id of an license-able organization.",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "serviceId",
-            "description": "A \"serviceId\" is an arbitrary identifier for a service with limited access that may be granted to an organization.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -130,15 +126,13 @@
                   "type": "array",
                   "items": {
                     "type": "string"
-                  },
-                  "description": "User IDs to assign to the license."
+                  }
                 },
                 "unassign": {
                   "type": "array",
                   "items": {
                     "type": "string"
-                  },
-                  "description": "User IDs to remove from the license."
+                  }
                 }
               },
               "description": "ModifySeatsRequest assuming we get the userId etc from the requester in the authorization header to validate if an \"admin\" can actually add licenses."
@@ -170,28 +164,24 @@
         "parameters": [
           {
             "name": "orgId",
-            "description": "The id of an license-able organization.",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "serviceId",
-            "description": "A \"serviceId\" is an arbitrary identifier for a service with limited access that may be granted to an organization.",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "includeUsers",
-            "description": "true: include enriched user representation. false: do not include (only IDs). Default: true.",
             "in": "query",
             "required": false,
             "type": "boolean"
           },
           {
             "name": "filter",
-            "description": "filter, either assigned or assignable users returned. Default: assigned.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -231,7 +221,6 @@
         "details": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -270,13 +259,11 @@
       "properties": {
         "seatsTotal": {
           "type": "integer",
-          "format": "int32",
-          "description": "Total number of seats assignable."
+          "format": "int32"
         },
         "seatsAvailable": {
           "type": "integer",
-          "format": "int32",
-          "description": "Current number of available seats which can be assigned."
+          "format": "int32"
         }
       }
     },
@@ -286,10 +273,8 @@
         "users": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/v1alphaGetSeatsUserRepresentation"
-          },
-          "description": "Just user IDs, unless \"includeUsers\" = true."
+          }
         }
       }
     },
